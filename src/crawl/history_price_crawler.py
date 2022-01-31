@@ -54,9 +54,10 @@ def crawl_history_price(csgo_items):
     log.info('从buff爬取共 {} 物品item满足爬取条件.'.format(total_price_number))
 
     proxies = proxyGet(30)
+    proxies_cycle = cycle(proxies)
 
     for index, item in enumerate(csgo_items, start=1):
         #枚举类型,从1开始,index记录的就是序号
         #针对csgo_items中的所有物品进行爬取,并赋予序号
-        proxy = next(cycle(proxies))
+        proxy = next(proxies_cycle)
         crawl_item_history_price(index, item, total_price_number,proxy)
